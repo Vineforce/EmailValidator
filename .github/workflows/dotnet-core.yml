@@ -36,12 +36,13 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
-    # Create NuGet package and publish using brandedoutcast/publish-nuget action
-    - name: Pack and Publish NuGet package
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-        PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  # Path to your .csproj file
-        PACKAGE_NAME: disposableEmailValidator  # The name of the NuGet package
-        VERSION_STATIC: 1.0.0  # Static version for the package
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}  # The NuGet API key
-        NUGET_SOURCE: https://api.nuget.org/v3/index.json  # NuGet source URL
+    # Create the NuGet package
+    - name: Pack NuGet package
+      run: dotnet pack /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj --configuration Release --output ./nupkgs --version 1.0.0
+
+    # Publish NuGet package to NuGet.org
+    - name: Publish NuGet package
+      run: |
+        dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}  # API Key from GitHub Secrets
