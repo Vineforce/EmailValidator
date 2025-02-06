@@ -13,7 +13,7 @@ jobs:
     steps:
     # Checkout code from the repository
     - uses: actions/checkout@v2
-    
+
     # Setup .NET SDK
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
@@ -42,10 +42,10 @@ jobs:
         dotnet pack /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj \
           --configuration Release \
           --output ./nupkgs
-    
+
     # Publish NuGet package to NuGet.org
     - name: Publish NuGet package
       run: |
         dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       env:
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}  # API Key from GitHub Secrets
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}  # API Key from GitHub Secrets
