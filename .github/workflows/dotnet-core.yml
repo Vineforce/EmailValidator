@@ -18,8 +18,8 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.x.x'  
-        
+        dotnet-version: '7.x.x'  # Specify .NET version
+
     # Restore dependencies
     - name: Install dependencies
       run: dotnet restore
@@ -35,12 +35,22 @@ jobs:
     # Run tests
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      
-       # Create NuGet package
-    - name: Pack NuGet package
-      run: dotnet pack /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj --configuration Release --output ./nupkgs
 
-      # Publish NuGet package to NuGet.org
-    - name: Publish NuGet package
-      run: dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      
+    # Create NuGet package and publish using brandedoutcast/publish-nuget action
+    - name: Pack and Publish NuGet package
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        # Path to the .csproj file to pack
+        project-path: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj
+        
+        # Output directory for the NuGet package
+        output-dir: ./nupkgs
+
+        # The version of the package
+        version: 1.0.0
+
+        # Specify the NuGet API key stored in GitHub Secrets
+        api-key: ${{ secrets.NUGET_API_KEY }}
+
+        # Optionally, specify the NuGet source (default is NuGet.org)
+        nuget-source: https://api.nuget.org/v3/index.json
