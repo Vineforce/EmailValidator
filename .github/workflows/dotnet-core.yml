@@ -42,7 +42,6 @@ jobs:
         dotnet pack /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj \
           --configuration Release \
           --output ./nupkgs \
-          --version 1.0.0 \
           /p:PackageId=disposableEmailValidator  # Set package name dynamically
 
     # Publish NuGet package to NuGet.org
