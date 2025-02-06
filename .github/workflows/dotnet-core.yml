@@ -41,7 +41,7 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
         PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  # Path to your .csproj file
-        PACKAGE_NAME: disposableEmailValidator  # The name of the NuGet package
+        PACKAGE_NAME: vineforceDisposableEmailValidator  # The name of the NuGet package
         VERSION_STATIC: 1.0.0  # Static version for the package
         NUGET_KEY: ${{ secrets.NUGET_API_KEY }}  # The NuGet API key
         NUGET_SOURCE: https://api.nuget.org/v3/index.json  # NuGet source URL
