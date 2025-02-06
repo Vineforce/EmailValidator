@@ -1,11 +1,14 @@
 ﻿namespace Vineforce
 {
-    #region List of disposabledEmail
-    /// <summary>
-    /// List of disposabledEmail
-    /// </summary>
+    
     public class DisposableEmailDomains
     {
+        #region List of disposabledEmail
+        /// <summary>
+        /// List of disposabledEmail
+        /// </summary>
+        public static List<string> DisposabledEmail = new List<string>()
+        {
             "0-mail.com",
             "027168.com",
             "0815.ru",
@@ -4005,6 +4008,7 @@
             "zzi.us",
             "zzrgg.com",
             "zzz.com",
+        };
+        #endregion
     }
-    #endregion 
 }
