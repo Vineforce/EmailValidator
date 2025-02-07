@@ -24,7 +24,7 @@ jobs:
     - name: Test  
       run: dotnet test --no-restore --verbosity normal 
     - name: Publish  
-      uses: brandedoutcast/publish-nuget@v2.5.5 
+      uses: brandedoutcast/publish-nuget@v2.5.2 
       with:   
        PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  
        VERSION_STATIC: 1.0.1
