@@ -4,15 +4,14 @@
     {
         #region IsDisposableEmail
         /// <summary>
-        ///  IsDisposableEmail 
+        ///  Validate whether the domain of your email address is disposable or not. 
         /// </summary>
-        /// <param name="Email"></param>
+        /// <param name="Email">Enter your email address</param>
         /// <returns>Bool</returns>
         public bool IsDisposableEmail(string Email)
         {
             var domain = Email.Split('@')[1].ToLower();
-            List<string> emailList = DisposableEmailDomains.DisposabledEmail;
-            var isExist = emailList.Contains(domain);
+            var isExist = DisposableEmailDomains.DisposabledEmail.Contains(domain);
             if (isExist) return true;
             return false;
         }

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <RootNamespace>Vineforce</RootNamespace>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<PackageId>disposableEmailValidator</PackageId>
-	<Version>1.0.0</Version>
-	<PackageDescription>validatedisposableemaildomainlist</PackageDescription>
+	  <TargetFramework>net7.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <RootNamespace>Vineforce</RootNamespace>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageId>disposableEmailValidator</PackageId>
+	  <Version>1.0.2</Version>
+	  <PackageDescription>Package for validating disposable email domains.</PackageDescription>
   </PropertyGroup>
 
 </Project>
