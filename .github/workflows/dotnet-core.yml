@@ -31,7 +31,7 @@ jobs:
           until [ $attempt -ge $max_attempts ]
           do
             echo "Publishing attempt #$((attempt+1))..."
-            npx brandedoutcast/publish-nuget@v2.5.2 \
+            npx brandedoutcast/publish-nuget@v2.5.5 \
               PROJECT_FILE_PATH=/home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj \
               PACKAGE_NAME=disposableEmailValidator \
               VERSION_STATIC=1.0.0 \
