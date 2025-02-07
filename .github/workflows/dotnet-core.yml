@@ -26,18 +26,13 @@ jobs:
       
     - name: Retry Publish NuGet
       run: |
-          attempt=0
-          max_attempts=3
-          until [ $attempt -ge $max_attempts ]
-          do
-            echo "Publishing attempt #$((attempt+1))..."
-            npx brandedoutcast/publish-nuget@v2.5.5 \
-              PROJECT_FILE_PATH=/home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj \
-              PACKAGE_NAME=disposableEmailValidator \
-              VERSION_STATIC=1.0.0 \
-              NUGET_KEY=${{ secrets.NUGET_API_KEY }} \
-              NUGET_SOURCE=https://api.nuget.org/v3/index.json && break
-            attempt=$((attempt+1))
-            echo "Retrying in 10 seconds..."
-            sleep 10
-          done 
+       attempt=0
+       max_attempts=3
+       until [ $attempt -ge $max_attempts ]
+       do
+        echo "Publishing attempt #$((attempt+1))..."
+        dotnet nuget push ./bin/Release/disposableEmailValidator.1.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json && break
+        attempt=$((attempt+1))
+        echo "Retrying in 10 seconds..."
+        sleep 10
+       done
