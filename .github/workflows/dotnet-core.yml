@@ -1,30 +1,47 @@
-name: .NET Core  
-  
-on:  
-  push:  
-    branches: [ main ]  
-  pull_request:  
-    branches: [ main ]  
-  
-jobs:  
-  build:  
-  
-    runs-on: window-latest  
-  
-    steps:  
-    - uses: actions/checkout@v2  
-    - name: Setup .NET Core  
-      uses: actions/setup-dotnet@v1  
-      with:  
-        dotnet-version: '7.x.x'
-    - name: Install dependencies  
-      run: dotnet restore  
-    - name: Build  
-      run: dotnet build --configuration Release --no-restore  
-    - name: Test  
-      run: dotnet test --no-restore --verbosity normal  
-    - name: Publish  
-      uses: brandedoutcast/publish-nuget@v2.5.2  
-      with:   
-       PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  
-       NUGET_KEY: ${{secrets.NUGET_API_KEY}}  
+name: .NET Core Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code from the repository
+    - uses: actions/checkout@v2
+    
+    # Setup .NET SDK
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.x.x'  # Specify .NET version
+
+    # Restore dependencies
+    - name: Install dependencies
+      run: dotnet restore
+
+    # Clean the build to ensure no old artifacts are present
+    - name: Clean build
+      run: dotnet clean
+
+    # Build the project
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    # Run tests
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+
+    # Create NuGet package and publish using brandedoutcast/publish-nuget action
+    - name: Pack and Publish NuGet package
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  # Path to your .csproj file
+        PACKAGE_NAME: disposableEmailValidator  # The name of the NuGet package
+        VERSION_STATIC: 1.0.0  # Static version for the package
+        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}  # The NuGet API key
+        NUGET_SOURCE: https://api.nuget.org/v3/index.json  # NuGet source URL
