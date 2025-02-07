@@ -26,5 +26,5 @@ jobs:
     - name: Publish  
       uses: brandedoutcast/publish-nuget@v2.5.2  
       with:   
-       PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/EmailValidator/bin/Release/disposableEmailValidator.1.0.0.nupkg'.  
+       PROJECT_FILE_PATH: /home/runner/work/EmailValidator/EmailValidator/ConsoleApplication/ConsoleApplication.csproj  
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}  
