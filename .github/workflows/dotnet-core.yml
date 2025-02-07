@@ -1,38 +1,33 @@
-name: .NET Core  
-  
-on:  
-  push:  
-    branches: [ main ]  
-  pull_request:  
-    branches: [ main ]  
-  
-jobs:  
-  build:  
-  
-    runs-on: ubuntu-latest  
-  
-    steps:  
-    - uses: actions/checkout@v2  
-    - name: Setup .NET Core  
-      uses: actions/setup-dotnet@v1  
-      with:  
-        dotnet-version: '7.x.x'  
-    - name: Install dependencies  
-      run: dotnet restore  
-    - name: Build  
-      run: dotnet build --configuration Release --no-restore  
-    - name: Test  
-      run: dotnet test --no-restore --verbosity normal  
-      
-    - name: Retry Publish NuGet
-      run: |
-       attempt=0
-       max_attempts=3
-       until [ $attempt -ge $max_attempts ]
-       do
-        echo "Publishing attempt #$((attempt+1))..."
-        dotnet nuget push ./bin/Release/disposableEmailValidator.1.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json && break
-        attempt=$((attempt+1))
-        echo "Retrying in 10 seconds..."
-        sleep 10
-       done
+name: Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up .NET 7.0
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      - name: Pack the project
+        run: dotnet pack --configuration Release --no-build --output ./nupkg
+
+      - name: Push NuGet package to NuGet.org
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
