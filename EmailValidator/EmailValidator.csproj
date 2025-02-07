@@ -5,6 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Vineforce</RootNamespace>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageId>disposableEmailValidator</PackageId>
+	<Version>1.0.0</Version>
+	<PackageDescription>validatedisposableemaildomainlist</PackageDescription>
   </PropertyGroup>
 
 </Project>
