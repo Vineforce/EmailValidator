@@ -31,7 +31,7 @@ jobs:
        until [ $attempt -ge $max_attempts ]
        do
         echo "Publishing attempt #$((attempt+1))..."
-        dotnet nuget push ./bin/Release/disposableEmailValidator.1.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json && break
+        dotnet nuget push ./bin/Release/disposableEmailValidator.1.0.2.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json && break
         attempt=$((attempt+1))
         echo "Retrying in 10 seconds..."
         sleep 10
