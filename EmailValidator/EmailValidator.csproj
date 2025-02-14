@@ -8,7 +8,10 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>Vineforce.DisposableEmailValidator</PackageId>
 	  <Version>1.0.0</Version>
+	  <PackageIcon>vineforce_icon.png</PackageIcon>
 	  <PackageDescription>Package for validating disposable email domains.</PackageDescription>
   </PropertyGroup>
-
+	<ItemGroup>
+		<None Include="vineforce_icon.png" Pack="true" PackagePath="images/logo.png" />
+	</ItemGroup>
 </Project>
