@@ -7,7 +7,7 @@
 	  <RootNamespace>Vineforce</RootNamespace>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>Vineforce.DisposableEmailValidator</PackageId>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <PackageIcon>images/vineforce_icon.png</PackageIcon>
 	  <PackageDescription>Package for validating disposable email domains.</PackageDescription>
   </PropertyGroup>
