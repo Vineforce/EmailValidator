@@ -6,10 +6,11 @@
 	  <Nullable>enable</Nullable>
 	  <RootNamespace>Vineforce</RootNamespace>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <PackageId>Vineforce.DisposableEmailValidator</PackageId>
-	  <Version>1.0.1</Version>
+	  <PackageId>disposableEmailValidator </PackageId>
+	  <Version>1.0.4</Version>
 	  <PackageIcon>images/vineforce_icon.png</PackageIcon>
 	  <PackageDescription>Package for validating disposable email domains.</PackageDescription>
+	  <PackageProjectUrl>https://www.vineforce.net/</PackageProjectUrl>
   </PropertyGroup>
 	<ItemGroup>
 		<Resource Include="images/vineforce_icon.png" Pack="true" PackagePath="images/vineforce_icon.png">
